@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:usb_manager/usb_manager.dart';
 
@@ -32,7 +33,9 @@ class MainApp extends StatelessWidget {
   }
 
   void _list() async {
-    print(await UsbManager.listDevices());
+    if (kDebugMode) {
+      print(await UsbManager.listDevices());
+    }
   }
 
   void _test() async {
@@ -44,7 +47,9 @@ class MainApp extends StatelessWidget {
     if (port == null) return;
 
     port.inputStream!.listen((event) {
-      print(event);
+      if (kDebugMode) {
+        print(event);
+      }
     });
   }
 }

@@ -10,8 +10,7 @@ import android.hardware.usb.UsbManager
 import android.os.Build
 import io.flutter.Log
 
-class PermissionManager(context: Context, private val manager: UsbManager):
-    BroadcastReceiver() {
+class PermissionManager(context: Context, private val manager: UsbManager): BroadcastReceiver() {
     private val intent = PendingIntent.getBroadcast(
         context,
         0,
@@ -52,20 +51,6 @@ class PermissionManager(context: Context, private val manager: UsbManager):
 
         requestMap[device] = cb
         manager.requestPermission(device, intent)
-
-//        Log.d(UsbManagerPlugin.LOG_TAG, "${device.manufacturerName}: Reached sync")
-//        synchronized(this) {
-//            Log.d(UsbManagerPlugin.LOG_TAG, "${device.manufacturerName}: Waiting for previous")
-//            currentRequest?.get()
-//            Log.d(UsbManagerPlugin.LOG_TAG, "${device.manufacturerName}: Asking permission")
-//            currentRequest = CompletableFuture<Boolean>().apply {
-//                whenComplete { res, _ ->
-//                    Log.d(UsbManagerPlugin.LOG_TAG, "${device.manufacturerName}: Result $res")
-//                    cb(res)
-//                }
-//            }
-//        }
-//        manager.requestPermission(device, intent)
     }
 
     companion object {
